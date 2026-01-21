@@ -13,7 +13,6 @@ function subtract(a,b) {
 };
 
 function divide(a,b) {
-    console.log(a,b)
     if (b == 0) {
         updateDisplay("No dividing by 0!", true);
         return false;
@@ -85,7 +84,6 @@ operators.forEach(currOp => {
         }
         operator = currOp.id;
         updateDisplay(currOp.textContent);
-        console.log(`end of operator processing: operator is ${operator}, num1 is ${num1}, num2 is ${num2}`)
     })
     
 })
@@ -121,29 +119,18 @@ const possibleOps = {'+':'add', '-':'subtract', '/':'divide', '*':'multiply'}
 
 document.addEventListener('keydown', function(e) {
     if (e.key >= '0' && e.key <= '9') {
-        updateVars(e.key);
+        const digitBtn = [...digits].find(digit => digit.title == e.key);
+        digitBtn?.click();
     }
     else if (e.key in possibleOps) {
-        if (num1 && num2) {
-            num1 = operate(num1, num2, operator);
-            res = num1;
-            resetVariables();
-            updateDisplay(res);
-            num1 = `${res}`;
-        }
-        
-        operator = possibleOps[e.key];
-        updateDisplay(e.key);
+        const opBtn = [...operators].find(op => op.id == possibleOps[e.key]);
+        opBtn?.click();
     }
-    else if (e.key == "Enter" || e.key == "=") {
-        res = operate(num1, num2, operator);
-        resetVariables();
-        if (res !== '') {
-            updateDisplay(res);
-        }
+    else if (e.key === "Enter" || e.key == "=") {
+        e.preventDefault();
+        equal.click();
     }
     else if (e.key.toLowerCase() == "c") {
-        resetVariables();
-        updateDisplay(num1);
+        clear.click();
     }
 })
