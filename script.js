@@ -1,3 +1,9 @@
+let num1 = '';
+let operator = '';
+let num2 = '';
+let res = 0;
+
+// Basic mathematical functions
 function add(a,b) {
 	return a + b
 };
@@ -19,16 +25,14 @@ function multiply(a,b) {
   return a * b;
 };
 
-let num1 = '';
-let operator = '';
-let num2 = '';
-let res = 0;
-
+// Function to get a pair of numbers and an operator calculated
 function operate(num1, num2, op) {
     return window[op](parseInt(num1), parseInt(num2));
 }
 
-let currDisplay = document.querySelector(".display")
+
+// Display of curr expression/result of calculation
+let currDisplay = document.querySelector(".display");
 
 function updateDisplay(input, error= false) {
     if (error) {
@@ -36,7 +40,6 @@ function updateDisplay(input, error= false) {
     }
     // calculation finished / just started
     else if (num1 == "" && num2 == "" && operator == "") {
-        // currDisplay.textContent = null
         currDisplay.textContent = input
     }
     // no operator inputted yet, we're still continuing the expression display
@@ -56,9 +59,8 @@ function updateVars(num) {
     }    
 }
 
-// Handle digits' inputs/clicks
+// Get digit elements (numbers)
 const digits = document.querySelectorAll(".digits .number");
-
 digits.forEach(digit => {
     let currDigit = digit.title;
 
@@ -69,7 +71,8 @@ digits.forEach(digit => {
     digit.addEventListener("click", registerNumWrapper);
 });
 
-// handle operator clicking
+
+// Get operator elements (+ - / *)
 const operators = document.querySelectorAll(".operator button");
 
 operators.forEach(currOp => {
@@ -77,31 +80,37 @@ operators.forEach(currOp => {
     currOp.addEventListener("click", () => {
         if (num1 && num2) {
             num1 = operate(num1, num2, operator);
-            num2 = '';
+            res = num1;
+            resetVariables();
+            updateDisplay(res);
+            num1 = `${res}`;
         }
         operator = currOp.id;
         updateDisplay(currOp.textContent);
+        console.log(`end of operator processing: operator is ${operator}, num1 is ${num1}, num2 is ${num2}`)
     })
     
 })
-// handle equal clicking
+
+// Enable equal/final result function
 const equal = document.querySelector(".nondigits button#equal")
 
 equal.addEventListener("click", () => {
     res = operate(num1, num2, operator);
-    if (res) {
+    resetVariables();
+    if (res !== '') {
         updateDisplay(res);
     }
-    resetVariables();
 })
 
-// handle clear
+// Reset all calculation variables to empty
 function resetVariables() {
     num1 = "";
     num2 = "";
     operator = "";
 }
 
+// Enable Clear function
 const clear = document.querySelector(".digits .clear");
 
 clear.addEventListener("click", () => {

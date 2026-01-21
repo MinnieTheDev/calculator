@@ -4,38 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+    <link rel="stylesheet" href = "style.css">
 </head>
 <body>
-    <div class="display"></div>
-    <div class="digits">
-        <div class="row-1">
-            <button class="number" title="7">7</button>
-            <button class="number" title="8">8</button>
-            <button class="number" title="9">9</button>
+    <div class="container">
+        <div class="display"></div>
+        <div class="circles">
+            <div class="digits">
+                <div class="row-1">
+                    <button class="number" title="7">7</button>
+                    <button class="number" title="8">8</button>
+                    <button class="number" title="9">9</button>
+                </div>
+                <div class="row-2">
+                    <button class="number" title="4">4</button>
+                    <button class="number" title="5">5</button>
+                    <button class="number" title="6">6</button>
+                </div>
+                <div class="row-3">
+                    <button class="number" title="1">1</button>
+                    <button class="number" title="2">2</button>
+                    <button class="number" title="3">3</button>
+                </div>
+                <div class="row-4">
+                    <button class="number" title="0">0</button>
+                    <button class="clear">Clear</button>
+                </div>
+            </div>
+            <div class="nondigits">
+                <div class="operator">
+                    <div class="op-first-row">
+                        <button id="add">+</button>
+                        <button id="subtract">-</button>
+                    </div>
+                    <div class="op-second-row">
+                        <button id="divide">÷</button>
+                        <button id="multiply">×</button>
+                    </div>
+                </div>
+                <button id="equal">=</button>
+            </div>
         </div>
-        <div class="row-2">
-            <button class="number" title="4">4</button>
-            <button class="number" title="5">5</button>
-            <button class="number" title="6">6</button>
-        </div>
-        <div class="row-3">
-            <button class="number" title="1">1</button>
-            <button class="number" title="2">2</button>
-            <button class="number" title="3">3</button>
-        </div>
-        <div class="row-4">
-            <button class="number" title="0">0</button>
-            <button class="clear">Clear</button>
-        </div>
-    </div>
-    <div class="nondigits">
-        <div class="operator">
-            <button id="add">+</button>
-            <button id="subtract">-</button>
-            <button id="divide">÷</button>
-            <button id="multiply">×</button>
-        </div>
-        <button id="equal">=</button>
     </div>
 
     <script src="script.js"></script>
