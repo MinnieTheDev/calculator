@@ -142,4 +142,8 @@ document.addEventListener('keydown', function(e) {
             updateDisplay(res);
         }
     }
+    else if (e.key.toLowerCase() == "c") {
+        resetVariables();
+        updateDisplay(num1);
+    }
 })
