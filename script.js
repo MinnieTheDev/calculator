@@ -30,7 +30,6 @@ function operate(num1, num2, op) {
     return window[op](parseInt(num1), parseInt(num2));
 }
 
-
 // Display of curr expression/result of calculation
 let currDisplay = document.querySelector(".display");
 
@@ -70,7 +69,6 @@ digits.forEach(digit => {
 
     digit.addEventListener("click", registerNumWrapper);
 });
-
 
 // Get operator elements (+ - / *)
 const operators = document.querySelectorAll(".operator button");
@@ -117,3 +115,31 @@ clear.addEventListener("click", () => {
     resetVariables();
     updateDisplay(num1);
 });
+
+// Enable keyboard support
+const possibleOps = {'+':'add', '-':'subtract', '/':'divide', '*':'multiply'}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key >= '0' && e.key <= '9') {
+        updateVars(e.key);
+    }
+    else if (e.key in possibleOps) {
+        if (num1 && num2) {
+            num1 = operate(num1, num2, operator);
+            res = num1;
+            resetVariables();
+            updateDisplay(res);
+            num1 = `${res}`;
+        }
+        
+        operator = possibleOps[e.key];
+        updateDisplay(e.key);
+    }
+    else if (e.key == "Enter" || e.key == "=") {
+        res = operate(num1, num2, operator);
+        resetVariables();
+        if (res !== '') {
+            updateDisplay(res);
+        }
+    }
+})
