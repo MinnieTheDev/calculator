@@ -70,7 +70,7 @@ body {
 }
 
 h1 {
-    font-size: 55px;
+    font-size: clamp(25px, 7vw, 55px);
 }
 
 .press-start-2p-regular {
