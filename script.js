@@ -5,11 +5,11 @@ let res = 0;
 
 // Basic mathematical functions
 function add(a,b) {
-	return a + b
+	return a + b;
 };
 
 function subtract(a,b) {
-	return a - b
+	return a - b;
 };
 
 function divide(a,b) {
@@ -38,11 +38,15 @@ function updateDisplay(input, error= false) {
     }
     // calculation finished / just started
     else if (num1 == "" && num2 == "" && operator == "") {
-        currDisplay.textContent = input
+        currDisplay.textContent = input;
     }
     // no operator inputted yet, we're still continuing the expression display
     else if (num1){
-        currDisplay.textContent += input
+        currDisplay.textContent += input;
+    }
+
+    if (currDisplay.textContent.length > 11) {
+        currDisplay.textContent = currDisplay.textContent.slice(0,11) + "...";
     }
 }
 
@@ -50,7 +54,7 @@ function updateDisplay(input, error= false) {
 function updateVars(num) {
     updateDisplay(num)
     if (operator == "" || (operator && num1 == "")) {
-        num1 += num
+        num1 += num;
     }
     else {
         num2 += num;
